@@ -1,0 +1,34 @@
+<form (ngSubmit)="startTimer()">
+    <ion-item>
+      <ion-label position="floating">Preparation Time (sec)</ion-label>
+      <ion-input type="number" [(ngModel)]="prepTime" name="prepTime"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Work Time (sec)</ion-label>
+      <ion-input type="number" [(ngModel)]="workTime" name="workTime"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Rest Time (min)</ion-label>
+      <ion-input type="number" [(ngModel)]="restMin" name="restMin"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Rest Time (sec)</ion-label>
+      <ion-input type="number" [(ngModel)]="restSec" name="restSec"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Number of Sets</ion-label>
+      <ion-input type="number" [(ngModel)]="sets" name="sets"></ion-input>
+    </ion-item>
+
+    <ion-button expand="full" type="submit">Start Timer</ion-button>
+  </form>
+
+  <div *ngIf="currentPhase">
+    <h2>{{ currentPhase }}</h2>
+    <h1>{{ displayTime }}</h1>
+    <p>Set: {{ currentSet }} / {{ sets }}</p>
+  </div>

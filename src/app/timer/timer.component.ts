@@ -1,18 +1,18 @@
 import { NgIf } from '@angular/common';
-import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';import { FormsModule } from '@angular/forms';
 import { IonHeader, IonToolbar, IonTitle, IonContent, IonItem, IonLabel, IonInput, IonButton } from '@ionic/angular/standalone';
-import { TimerComponent } from "../timer/timer.component";
+
 
 @Component({
-  selector: 'app-home',
-  templateUrl: 'home.page.html',
-  styleUrls: ['home.page.scss'],
-  imports: [IonHeader, IonToolbar, IonTitle, IonContent, IonItem, IonLabel, IonInput, IonButton, FormsModule, NgIf, TimerComponent],
-  standalone: true,
+  selector: 'app-timer',
+  templateUrl: './timer.component.html',
+  imports: [IonHeader, IonToolbar, IonTitle, IonContent, IonItem, IonLabel, IonInput, IonButton, FormsModule, NgIf],
+
+  styleUrls: ['./timer.component.scss'],
 })
-export class HomePage {
-   prepTime = 10;
+export class TimerComponent {
+
+ prepTime = 10;
   workTime = 30;
   restMin = 0;
   restSec = 30;
@@ -72,4 +72,5 @@ export class HomePage {
     const s = (seconds % 60).toString().padStart(2, '0');
     this.displayTime = `${m}:${s}`;
   }
+
 }
