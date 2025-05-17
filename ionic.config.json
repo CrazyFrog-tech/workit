@@ -1,0 +1,7 @@
+{
+  "name": "workit",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
