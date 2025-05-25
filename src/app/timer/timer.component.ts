@@ -41,6 +41,12 @@ export class TimerComponent {
   restTimeMins: number = 0;
   restTimeSecs: number = 0;
 
+  isRunning: boolean = false;
+  isPaused: boolean = false;
+
+  private remainingTime: number = 0;
+  private countdownCallback: (() => void) | null = null;
+
   onPrepTimeChange(ev: { hours: number, minutes: number, seconds: number }) {
     this.prepTimeHrs = ev.hours;
     this.prepTimeMins = ev.minutes;
@@ -82,7 +88,50 @@ export class TimerComponent {
     this.restSec = restTime % 60;
 
     this.currentSet = 0;
+    this.isRunning = true;
+    this.isPaused = false;
     this.runPreparation();
+  }
+
+  pauseTimer() {
+    if (this.timerInterval) {
+      clearInterval(this.timerInterval);
+      this.isPaused = true;
+      this.isRunning = false;
+      // Store remaining time for resume
+      // Find the current phase's remaining time by parsing displayTime
+      const [m, s] = this.displayTime.split(':').map(Number);
+      this.remainingTime = m * 60 + s;
+    }
+  }
+
+  resumeTimer() {
+    if (this.isPaused && this.remainingTime > 0 && this.countdownCallback) {
+      this.isPaused = false;
+      this.isRunning = true;
+      const callback = this.countdownCallback;
+      const time = this.remainingTime;
+      // Clear previous interval if any
+      if (this.timerInterval) {
+        clearInterval(this.timerInterval);
+      }
+      // Do NOT clear countdownCallback here, let runCountdown manage it
+      this.runCountdown(time, callback);
+      // Do not reset remainingTime/countdownCallback here
+    }
+  }
+
+  stopTimer() {
+    if (this.timerInterval) {
+      clearInterval(this.timerInterval);
+    }
+    this.isRunning = false;
+    this.isPaused = false;
+    this.currentPhase = '';
+    this.displayTime = '';
+    this.currentSet = 0;
+    this.remainingTime = 0;
+    this.countdownCallback = null;
   }
 
   runPreparation() {
@@ -110,15 +159,25 @@ export class TimerComponent {
 
   runCountdown(seconds: number, callback: () => void) {
     let timeLeft = seconds;
+    this.countdownCallback = callback;
     this.updateDisplay(timeLeft);
 
+    if (this.timerInterval) {
+      clearInterval(this.timerInterval);
+    }
+
     this.timerInterval = setInterval(() => {
+      if (this.isPaused) return;
       timeLeft--;
       this.updateDisplay(timeLeft);
 
       if (timeLeft <= 0) {
         clearInterval(this.timerInterval);
+        this.countdownCallback = null;
+        this.remainingTime = 0;
         callback();
+      } else {
+        this.remainingTime = timeLeft;
       }
     }, 1000);
   }
