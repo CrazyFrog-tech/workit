@@ -47,6 +47,8 @@ export class TimerComponent {
   private remainingTime: number = 0;
   private countdownCallback: (() => void) | null = null;
 
+  showFireworks: boolean = false;
+
   onPrepTimeChange(ev: { hours: number, minutes: number, seconds: number }) {
     this.prepTimeHrs = ev.hours;
     this.prepTimeMins = ev.minutes;
@@ -143,12 +145,20 @@ export class TimerComponent {
     if (this.currentSet >= this.sets) {
       this.currentPhase = 'Workout Complete!';
       this.displayTime = '';
+      this.triggerFireworks();
       return;
     }
 
     this.currentSet++;
     this.currentPhase = `Work (Set ${this.currentSet})`;
     this.runCountdown(this.totalWorkTime, () => this.runRest());
+  }
+
+  triggerFireworks() {
+    this.showFireworks = true;
+    setTimeout(() => {
+      this.showFireworks = false;
+    }, 3000);
   }
 
   runRest() {

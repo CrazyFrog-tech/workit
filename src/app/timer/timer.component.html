@@ -12,15 +12,17 @@
       </ion-item>
 
       <!-- Work Time Picker (hrs, mins, secs) -->
-      <ion-item>
-        <ion-label>Work Time</ion-label>
-        <app-time-picker
-          [hours]="workTimeHrs"
-          [minutes]="workTimeMins"
-          [seconds]="workTimeSecs"
-          (timeChange)="onWorkTimeChange($event)">
-        </app-time-picker>
-      </ion-item>
+      <div class="item-background">
+        <ion-item color="">
+          <ion-label>Work Time</ion-label>
+          <app-time-picker
+            [hours]="workTimeHrs"
+            [minutes]="workTimeMins"
+            [seconds]="workTimeSecs"
+            (timeChange)="onWorkTimeChange($event)">
+          </app-time-picker>
+        </ion-item>
+      </div>
 
       <ion-item>
         <ion-label>Rest Time</ion-label>
@@ -36,23 +38,26 @@
         <ion-label position="floating">Number of Sets</ion-label>
         <ion-input type="number" [(ngModel)]="sets" name="sets"></ion-input>
       </ion-item>
-      <ng-container *ngIf="!isRunning && !isPaused">
+      <ng-container *ngIf="(!isRunning && !isPaused) || currentPhase === 'Workout Complete!'">
         <ion-button expand="full" type="submit">Start Timer</ion-button>
       </ng-container>
-      <ng-container *ngIf="isRunning">
+      <ng-container *ngIf="isRunning && currentPhase !== 'Workout Complete!'">
         <ion-button expand="full" color="warning" type="button" (click)="pauseTimer()">Pause Timer</ion-button>
         <ion-button expand="full" color="danger" type="button" (click)="stopTimer()">Stop Timer</ion-button>
       </ng-container>
-      <ng-container *ngIf="isPaused">
+      <ng-container *ngIf="isPaused && currentPhase !== 'Workout Complete!'">
         <ion-button expand="full" color="primary" type="button" (click)="resumeTimer()">Resume Timer</ion-button>
         <ion-button expand="full" color="danger" type="button" (click)="stopTimer()">Stop Timer</ion-button>
       </ng-container>
     </form>
-
     <div *ngIf="currentPhase">
       <h2>{{ currentPhase }}</h2>
       <h1>{{ displayTime }}</h1>
       <p>Set: {{ currentSet }} / {{ sets }}</p>
     </div>
+  </div>
+  <div *ngIf="showFireworks" class="pyro">
+    <div class="before"></div>
+    <div class="after"></div>
   </div>
 </div>

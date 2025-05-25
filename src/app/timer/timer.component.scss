@@ -6,6 +6,12 @@
   background: linear-gradient(135deg, #f5f8ff 0%, #1976d2 60%, #1c2455 100%);
 }
 
+// Use a soft blue gradient for ion-item backgrounds
+ion-item {
+  --ion-item-background: linear-gradient(90deg, #3593ff 0%, #ced9fd 100%);
+
+}
+
 .timer-container {
   display: flex;
   flex-direction: column;
@@ -93,6 +99,225 @@ p {
   color: #222;
   font-size: 1.1rem;
   margin-top: 0.5em;
+}
+
+.celebration-animation {
+  position: relative;
+  width: 100%;
+  height: 160px;
+  margin-top: 1.5em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  overflow: visible;
+  z-index: 2;
+}
+
+.celebrate-text {
+  font-size: 2.3rem;
+  font-weight: 900;
+  color: #ff1744;
+  text-shadow: 0 2px 16px #fff, 0 0 32px #1976d2, 0 0 8px #ffd600;
+  margin-top: 1em;
+  display: block;
+  animation: pop-in-explode 0.5s cubic-bezier(.68,-0.55,.27,1.55), shake 0.7s 0.5s;
+  letter-spacing: 2px;
+}
+
+@keyframes pop-in-explode {
+  0% { transform: scale(0.2); opacity: 0; }
+  70% { transform: scale(1.3); opacity: 1; }
+  100% { transform: scale(1); }
+}
+
+@keyframes shake {
+  0% { transform: translateX(0); }
+  20% { transform: translateX(-10px); }
+  40% { transform: translateX(10px); }
+  60% { transform: translateX(-6px); }
+  80% { transform: translateX(6px); }
+  100% { transform: translateX(0); }
+}
+
+.confetti {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 16px;
+  height: 32px;
+  border-radius: 4px;
+  opacity: 0.95;
+  animation: confetti-explode 1.2s cubic-bezier(.68,-0.55,.27,1.55) forwards;
+  z-index: 2;
+}
+
+.confetti:nth-child(1) { left: 10%; animation-delay: 0s; background: linear-gradient(135deg, #ff1744, #ffd600); }
+.confetti:nth-child(2) { left: 20%; animation-delay: 0.1s; background: linear-gradient(135deg, #1976d2, #43e97b); }
+.confetti:nth-child(3) { left: 30%; animation-delay: 0.2s; background: linear-gradient(135deg, #42a5f5, #ff8c00); }
+.confetti:nth-child(4) { left: 40%; animation-delay: 0.15s; background: linear-gradient(135deg, #ff8c00, #ffd600); }
+.confetti:nth-child(5) { left: 50%; animation-delay: 0.05s; background: linear-gradient(135deg, #ffd600, #ff1744); }
+.confetti:nth-child(6) { left: 60%; animation-delay: 0.18s; background: linear-gradient(135deg, #43e97b, #1976d2); }
+.confetti:nth-child(7) { left: 70%; animation-delay: 0.12s; background: linear-gradient(135deg, #ff1744, #42a5f5); }
+.confetti:nth-child(8) { left: 80%; animation-delay: 0.22s; background: linear-gradient(135deg, #1976d2, #ffd600); }
+.confetti:nth-child(9) { left: 90%; animation-delay: 0.09s; background: linear-gradient(135deg, #42a5f5, #ff8c00); }
+.confetti:nth-child(10) { left: 95%; animation-delay: 0.19s; background: linear-gradient(135deg, #ffd600, #43e97b); }
+
+@keyframes confetti-explode {
+  0% {
+    top: 0;
+    opacity: 1;
+    transform: scaleY(1) scaleX(1) rotate(0deg);
+  }
+  60% {
+    opacity: 1;
+    transform: scaleY(1.2) scaleX(1.2) rotate(180deg);
+  }
+  80% {
+    opacity: 1;
+    transform: scaleY(0.8) scaleX(1.3) rotate(270deg);
+  }
+  100% {
+    top: 140px;
+    opacity: 0;
+    transform: scaleY(0.6) scaleX(1.5) rotate(360deg);
+  }
+}
+
+.fireworks-overlay {
+  position: fixed;
+  z-index: 9999;
+  pointer-events: none;
+  top: 0; left: 0; right: 0; bottom: 0;
+  width: 100vw;
+  height: 100vh;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  animation: fadeout 0.5s 2.5s forwards;
+}
+
+.pyro {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  animation: fadeout 0.5s 2.5s forwards;
+}
+
+.pyro > .before, .pyro > .after {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: transparent;
+  /* Simulate many particles with box-shadow */
+  box-shadow:
+    0 0 #fff,
+    120px -24px #ff1744,
+    240px 0 #ffd600,
+    180px 120px #1976d2,
+    0 240px #43e97b,
+    -180px 120px #ff8c00,
+    -240px 0 #42a5f5,
+    -120px -24px #ffd600,
+    0 -180px #ff1744,
+    60px -120px #42a5f5,
+    -60px -120px #ffd600,
+    120px 120px #43e97b,
+    -120px 120px #ff1744,
+    200px -100px #ff8c00,
+    -200px -100px #1976d2,
+    100px 200px #ffd600,
+    -100px 200px #42a5f5;
+  animation: bang 1s cubic-bezier(.68,-0.55,.27,1.55), gravity 1.2s 1s cubic-bezier(.68,-0.55,.27,1.55) forwards;
+}
+
+.pyro > .after {
+  opacity: 0.7;
+  filter: blur(2px);
+  animation-delay: 0.3s, 1.3s;
+}
+
+@keyframes bang {
+  0% {
+    box-shadow:
+      0 0 #fff,
+      0 0 #ff1744,
+      0 0 #ffd600,
+      0 0 #1976d2,
+      0 0 #43e97b,
+      0 0 #ff8c00,
+      0 0 #42a5f5,
+      0 0 #ffd600,
+      0 0 #ff1744,
+      0 0 #42a5f5,
+      0 0 #ffd600,
+      0 0 #43e97b,
+      0 0 #ff1744,
+      0 0 #ff8c00,
+      0 0 #1976d2,
+      0 0 #ffd600,
+      0 0 #42a5f5;
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    box-shadow:
+      0 0 #fff,
+      120px -24px #ff1744,
+      240px 0 #ffd600,
+      180px 120px #1976d2,
+      0 240px #43e97b,
+      -180px 120px #ff8c00,
+      -240px 0 #42a5f5,
+      -120px -24px #ffd600,
+      0 -180px #ff1744,
+      60px -120px #42a5f5,
+      -60px -120px #ffd600,
+      120px 120px #43e97b,
+      -120px 120px #ff1744,
+      200px -100px #ff8c00,
+      -200px -100px #1976d2,
+      100px 200px #ffd600,
+      -100px 200px #42a5f5;
+    opacity: 1;
+  }
+}
+
+@keyframes gravity {
+  0% { opacity: 1; }
+  100% { opacity: 0; transform: translateY(80px) scale(0.8); }
+}
+
+@keyframes fadeout {
+  to { opacity: 0; }
+}
+
+.fireworks-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 2.5rem;
+  font-weight: 900;
+  color: #ff1744;
+  text-shadow: 0 2px 16px #fff, 0 0 32px #1976d2, 0 0 8px #ffd600;
+  letter-spacing: 2px;
+  animation: pop-in-explode 0.5s cubic-bezier(.68,-0.55,.27,1.55);
+  z-index: 10000;
 }
 
 @media (max-width: 600px) {
