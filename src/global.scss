@@ -35,3 +35,137 @@
 /* @import "@ionic/angular/css/palettes/dark.always.css"; */
 /* @import "@ionic/angular/css/palettes/dark.class.css"; */
 @import '@ionic/angular/css/palettes/dark.system.css';
+
+body, ion-app, ion-content {
+  background: linear-gradient(135deg, #181818 0%, #232526 100%);
+  min-height: 100vh;
+  font-family: 'Montserrat', 'Roboto', Arial, sans-serif;
+}
+
+form, .centered-content, .timer-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+ion-item, .tp-grid {
+  margin: 12px 0;
+  border-radius: 12px;
+  background: rgba(30, 30, 30, 0.95);
+  box-shadow: 0 2px 12px #000a, 0 1.5px 0 #ff1744 inset;
+  width: 100%;
+  max-width: 400px;
+}
+
+ion-label, .tp-label {
+  color: #fff;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+ion-input, .tp-input {
+  color: #ff1744;
+  font-weight: bold;
+  font-size: 1.5rem;
+  background: transparent;
+  border: none;
+  text-align: center;
+}
+
+ion-button {
+  --background: linear-gradient(90deg, #ff1744 0%, #ff8c00 100%);
+  --color: #fff;
+  --border-radius: 8px;
+  --box-shadow: 0 2px 8px #ff174488;
+  font-weight: 700;
+  letter-spacing: 1px;
+  margin-top: 18px;
+  width: 100%;
+  max-width: 400px;
+}
+
+h1, h2, h3, h4, h5 {
+  color: #ff1744;
+  font-family: 'Montserrat', 'Roboto', Arial, sans-serif;
+  font-weight: 900;
+  letter-spacing: 2px;
+  text-align: center;
+}
+
+h1 {
+  font-size: 3rem;
+  margin: 0.5em 0 0.2em 0;
+}
+
+h2 {
+  font-size: 2rem;
+  margin: 0.2em 0;
+}
+
+p {
+  color: #fff;
+  text-align: center;
+  font-size: 1.1rem;
+  margin: 0.5em 0;
+}
+
+@media (max-width: 600px) {
+  form, .centered-content, .timer-container, ion-item, .tp-grid {
+    max-width: 98vw;
+    width: 98vw;
+  }
+  h1 {
+    font-size: 2.2rem;
+  }
+  h2 {
+    font-size: 1.3rem;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  body, ion-app, ion-content {
+    background: linear-gradient(135deg, #111 0%, #232526 100%);
+    color: #fff;
+  }
+
+  ion-item, .tp-grid {
+    background: rgba(20, 20, 20, 0.98);
+    box-shadow: 0 2px 12px #000c, 0 1.5px 0 #ff1744 inset;
+  }
+
+  ion-label, .tp-label {
+    color: #fff;
+  }
+
+  ion-input, .tp-input {
+    color: #ff1744;
+    background: transparent;
+  }
+
+  ion-button {
+    --background: linear-gradient(90deg, #ff1744 0%, #ff8c00 100%);
+    --color: #fff;
+  }
+
+  h1, h2, h3, h4, h5 {
+    color: #ff1744;
+  }
+
+  p {
+    color: #fff;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #ff1744;
+  }
+}
+
+::-webkit-scrollbar {
+  width: 0.5em;
+  background: #232526;
+}
+::-webkit-scrollbar-thumb {
+  background: #ff1744;
+  border-radius: 8px;
+}

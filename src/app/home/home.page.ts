@@ -8,7 +8,7 @@ import { TimerComponent } from "../timer/timer.component";
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
-  imports: [IonHeader, IonToolbar, IonTitle, IonContent, IonItem, IonLabel, IonInput, IonButton, FormsModule, NgIf, TimerComponent],
+  imports: [IonHeader, IonToolbar, IonTitle, IonContent, FormsModule, TimerComponent],
   standalone: true,
 })
 export class HomePage {
