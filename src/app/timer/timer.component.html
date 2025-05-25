@@ -2,7 +2,7 @@
   <div class="timer-container">
     <form (ngSubmit)="startTimer()">
       <ion-item>
-        <ion-label>Preparation Time</ion-label>
+        <ion-label>Preparation</ion-label>
         <app-time-picker
           [hours]="prepTimeHrs"
           [minutes]="prepTimeMins"
@@ -14,7 +14,7 @@
       <!-- Work Time Picker (hrs, mins, secs) -->
       <div class="item-background">
         <ion-item color="">
-          <ion-label>Work Time</ion-label>
+          <ion-label>Work</ion-label>
           <app-time-picker
             [hours]="workTimeHrs"
             [minutes]="workTimeMins"
@@ -25,7 +25,7 @@
       </div>
 
       <ion-item>
-        <ion-label>Rest Time</ion-label>
+        <ion-label>Rest</ion-label>
         <app-time-picker
           [hours]="restTimeHrs"
           [minutes]="restTimeMins"
