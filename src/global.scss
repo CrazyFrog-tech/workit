@@ -50,10 +50,10 @@ form, .centered-content, .timer-container {
 }
 
 ion-item, .tp-grid {
-  margin: 12px 0;
+  margin: 12px 0px;
   border-radius: 12px;
   background: rgba(30, 30, 30, 0.95);
-  box-shadow: 0 2px 12px #000a, 0 1.5px 0 #ff1744 inset;
+  box-shadow: 0 2px 12px #000a, 0 1.5px 0 #2617ff inset;
   width: 100%;
   max-width: 400px;
 }
@@ -74,10 +74,10 @@ ion-input, .tp-input {
 }
 
 ion-button {
-  --background: linear-gradient(90deg, #ff1744 0%, #ff8c00 100%);
+  --background: linear-gradient(90deg, #2617ff 0%, #ff8c00 100%);
   --color: #fff;
   --border-radius: 8px;
-  --box-shadow: 0 2px 8px #ff174488;
+  --box-shadow: 0 2px 8px #171bff88;
   font-weight: 700;
   letter-spacing: 1px;
   margin-top: 18px;
@@ -86,7 +86,7 @@ ion-button {
 }
 
 h1, h2, h3, h4, h5 {
-  color: #ff1744;
+  color: #171bff;
   font-family: 'Montserrat', 'Roboto', Arial, sans-serif;
   font-weight: 900;
   letter-spacing: 2px;
@@ -131,7 +131,7 @@ p {
 
   ion-item, .tp-grid {
     background: rgba(20, 20, 20, 0.98);
-    box-shadow: 0 2px 12px #000c, 0 1.5px 0 #ff1744 inset;
+    box-shadow: 0 2px 12px #000c, 0 1.5px 0 #172eff inset;
   }
 
   ion-label, .tp-label {
