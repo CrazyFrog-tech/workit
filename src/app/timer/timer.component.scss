@@ -34,12 +34,13 @@ form {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 18px;
+  gap: 8px;
   background: none;
 }
 
 ion-item {
-  width: 100%;
+  width: 80%;
+  min-height: 60px;
   max-width: 400px;
   background: #f5f8ff;
   border-radius: 12px;
@@ -65,7 +66,7 @@ ion-input {
 ion-button[type="submit"] {
   width: 80%;
   max-width: 400px;
-  margin: 24px auto 0 auto;
+  margin: 8px auto 0 auto;
   font-weight: 700;
   font-size: 1.2rem;
   letter-spacing: 1px;
@@ -92,7 +93,7 @@ h1 {
 }
 
 h2 {
-  color: #222;
+  color: #ffffff;
   font-size: 1.5rem;
   font-weight: 700;
   margin-bottom: 0.2em;
@@ -325,15 +326,81 @@ p {
 
 @media (max-width: 600px) {
   .timer-container, form {
-    max-width: 98vw;
-    width: 98vw;
-    min-height: 250px;
-    height: 80vh;
+    max-width: 99vw;
+    width: 99vw;
+    min-height: 40px;
+    height: auto;
+    padding: 0 0.5vw;
+    gap: 1px;
+  }
+  form {
+    gap: 1px;
+  }
+  ion-item {
+    min-height: 24px;
+    max-width: 99vw;
+    font-size: 0.75rem;
+    padding: 1px 0;
+    margin-bottom: 1px;
+  }
+  ion-label {
+    font-size: 0.75rem;
+    padding: 0;
+    margin: 0;
+  }
+  ion-input {
+    font-size: 0.8rem;
+    padding: 0;
+    min-height: 18px;
+  }
+  ion-button[type="submit"],
+  ion-button {
+    font-size: 0.85rem;
+    padding: 2px 0;
+    min-height: 22px;
+    --border-radius: 4px;
+    margin: 1px 0;
+    width: 98%;
+    max-width: 99vw;
+  }
+  div[ngif], .timer-display {
+    margin-top: 0.3em;
   }
   h1 {
-    font-size: 1.5rem;
+    font-size: 0.85rem;
+    margin: 0.02em 0;
   }
   h2 {
-    font-size: 1.1rem;
+    font-size: 0.7rem;
+    margin-bottom: 0.02em;
+  }
+  p {
+    font-size: 0.7rem;
+    margin-top: 0.05em;
+  }
+  .celebrate-text,
+  .fireworks-text {
+    font-size: 0.8rem;
+    margin-top: 0.15em;
+  }
+  .celebration-animation {
+    height: 24px;
+    margin-top: 0.1em;
+  }
+  .pyro {
+    height: 15vw;
+    min-height: 30px;
+  }
+  .pyro > .before, .pyro > .after {
+    width: 2px;
+    height: 2px;
+  }
+  .confetti {
+    width: 3px;
+    height: 6px;
+    border-radius: 1px;
+  }
+  form > div[ngif] {
+    color: #fff !important;
   }
 }

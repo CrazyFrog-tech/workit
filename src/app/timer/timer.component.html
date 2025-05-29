@@ -15,8 +15,7 @@
       </div>
 
       <!-- Work Time Picker (hrs, mins, secs) -->
-      <div class="item-background">
-        <ion-item color="">
+        <ion-item >
           <ion-label>Work</ion-label>
           <app-time-picker
             [hours]="workTimeHrs"
@@ -25,7 +24,6 @@
             (timeChange)="onWorkTimeChange($event)">
           </app-time-picker>
         </ion-item>
-      </div>
       <div *ngIf="(workTimeHrs * 3600 + workTimeMins * 60 + workTimeSecs) < 5" style="color: #ff1744; font-size: 0.95em; margin-bottom: 8px;">
         Work time must be at least 5 seconds.
       </div>
@@ -66,7 +64,7 @@
         <ion-button expand="full" color="danger" type="button" (click)="stopTimer()">Stop Timer</ion-button>
       </ng-container>
     </form>
-    <div *ngIf="currentPhase">
+    <div *ngIf="currentPhase" class="timer-display themed-timer-display">
       <h2>{{ currentPhase }}</h2>
       <h1>{{ displayTime }}</h1>
       <p>Set: {{ currentSet }} / {{ sets }}</p>
