@@ -3,7 +3,10 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  background: linear-gradient(135deg, #f5f8ff 0%, #1976d2 60%, #1c2455 100%);
+  background-image: url('/assets/images/background.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
 }
 
 // Use a soft blue gradient for ion-item backgrounds
