@@ -14,10 +14,14 @@ import { TimePickerComponent } from "../timePicker/time-picker.component";
 })
 export class TimerComponent {
 
-  prepTime = 10;
+  timerStartAudio = new Audio('assets/sounds/race-start-beeps-125125.mp3');
+  timerEndAudio = new Audio('assets/sounds/school-bell-310293.mp3');
+
+
+  prepTime = 5;
   restMin = 0;
-  restSec = 30;
-  sets = 5;
+  restSec = 5;
+  sets = 1;
 
   currentSet = 0;
   currentPhase = '';
@@ -27,19 +31,19 @@ export class TimerComponent {
 
   workTimeHrs: number = 0;
   workTimeMins: number = 0;
-  workTimeSecs: number = 0;
+  workTimeSecs: number = 5;
 
   private totalWorkTime: number = 0;
 
   // Preparation time fields
   prepTimeHrs: number = 0;
   prepTimeMins: number = 0;
-  prepTimeSecs: number = 0;
+  prepTimeSecs: number = 5;
 
   // Rest time fields
   restTimeHrs: number = 0;
   restTimeMins: number = 0;
-  restTimeSecs: number = 0;
+  restTimeSecs: number = 5;
 
   isRunning: boolean = false;
   isPaused: boolean = false;
@@ -123,6 +127,20 @@ export class TimerComponent {
     }
   }
 
+  playStartSound() {
+    this.timerStartAudio.currentTime = 0; 
+    this.timerStartAudio.play().catch(error => {
+      console.error('Error playing start sound:', error);
+    });
+  }
+
+  playEndSound() {
+    this.timerEndAudio.currentTime = 0; 
+    this.timerEndAudio.play().catch(error => {
+      console.error('Error playing end sound:', error);
+    });
+  }
+
   stopTimer() {
     if (this.timerInterval) {
       clearInterval(this.timerInterval);
@@ -181,10 +199,18 @@ export class TimerComponent {
       timeLeft--;
       this.updateDisplay(timeLeft);
 
+      if (timeLeft == 4) {
+        this.playStartSound();
+      }
+
       if (timeLeft <= 0) {
         clearInterval(this.timerInterval);
         this.countdownCallback = null;
         this.remainingTime = 0;
+        // Play end sound only if rest just finished and all sets are done
+        if (this.sets > 0 && this.currentSet >= this.sets && this.currentPhase === 'Rest') {
+          this.playEndSound();
+        }
         callback();
       } else {
         this.remainingTime = timeLeft;

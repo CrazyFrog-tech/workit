@@ -10,6 +10,9 @@
           (timeChange)="onPrepTimeChange($event)">
         </app-time-picker>
       </ion-item>
+      <div *ngIf="(prepTimeHrs * 3600 + prepTimeMins * 60 + prepTimeSecs) < 5" style="color: #ff1744; font-size: 0.95em; margin-bottom: 8px;">
+        Preparation time must be at least 5 seconds.
+      </div>
 
       <!-- Work Time Picker (hrs, mins, secs) -->
       <div class="item-background">
@@ -23,6 +26,9 @@
           </app-time-picker>
         </ion-item>
       </div>
+      <div *ngIf="(workTimeHrs * 3600 + workTimeMins * 60 + workTimeSecs) < 5" style="color: #ff1744; font-size: 0.95em; margin-bottom: 8px;">
+        Work time must be at least 5 seconds.
+      </div>
 
       <ion-item>
         <ion-label>Rest</ion-label>
@@ -33,13 +39,23 @@
           (timeChange)="onRestTimeChange($event)">
         </app-time-picker>
       </ion-item>
+      <div *ngIf="(restTimeHrs * 3600 + restTimeMins * 60 + restTimeSecs) < 5" style="color: #ff1744; font-size: 0.95em; margin-bottom: 8px;">
+        Rest time must be at least 5 seconds.
+      </div>
 
       <ion-item>
         <ion-label position="floating">Number of Sets</ion-label>
         <ion-input type="number" [(ngModel)]="sets" name="sets"></ion-input>
       </ion-item>
       <ng-container *ngIf="(!isRunning && !isPaused) || currentPhase === 'Workout Complete!'">
-        <ion-button expand="full" type="submit">Start Timer</ion-button>
+        <ion-button expand="full" type="submit"
+          [disabled]="
+            (prepTimeHrs * 3600 + prepTimeMins * 60 + prepTimeSecs) < 5 ||
+            (workTimeHrs * 3600 + workTimeMins * 60 + workTimeSecs) < 5 ||
+            (restTimeHrs * 3600 + restTimeMins * 60 + restTimeSecs) < 5
+          ">
+          Start Timer
+        </ion-button>
       </ng-container>
       <ng-container *ngIf="isRunning && currentPhase !== 'Workout Complete!'">
         <ion-button expand="full" color="warning" type="button" (click)="pauseTimer()">Pause Timer</ion-button>
