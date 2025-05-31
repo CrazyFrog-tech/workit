@@ -4,19 +4,16 @@ import { FormsModule } from '@angular/forms';
 import { IonItem, IonLabel, IonInput, IonButton } from '@ionic/angular/standalone';
 import { TimePickerComponent } from "../timePicker/time-picker.component";
 
-
 @Component({
   selector: 'app-timer',
   templateUrl: './timer.component.html',
   imports: [IonItem, IonLabel, IonInput, IonButton, FormsModule, NgIf, TimePickerComponent],
-
   styleUrls: ['./timer.component.scss'],
 })
 export class TimerComponent {
 
   timerStartAudio = new Audio('assets/sounds/race-start-beeps-125125.mp3');
   timerEndAudio = new Audio('assets/sounds/school-bell-310293.mp3');
-
 
   prepTime = 5;
   restMin = 0;
@@ -35,12 +32,10 @@ export class TimerComponent {
 
   private totalWorkTime: number = 0;
 
-  // Preparation time fields
   prepTimeHrs: number = 0;
   prepTimeMins: number = 0;
   prepTimeSecs: number = 5;
 
-  // Rest time fields
   restTimeHrs: number = 0;
   restTimeMins: number = 0;
   restTimeSecs: number = 5;
@@ -77,7 +72,6 @@ export class TimerComponent {
     }
   }
 
-
   onPrepTimeChange(ev: { hours: number, minutes: number, seconds: number }) {
     this.prepTimeHrs = ev.hours;
     this.prepTimeMins = ev.minutes;
@@ -98,19 +92,16 @@ export class TimerComponent {
 
   startTimer() {
     this.stopAllSounds();
-    // Calculate total work time in seconds from hrs, mins, secs
     this.totalWorkTime =
       (Number(this.workTimeHrs) || 0) * 3600 +
       (Number(this.workTimeMins) || 0) * 60 +
       (Number(this.workTimeSecs) || 0);
 
-    // Calculate total prep time in seconds
     this.prepTime =
       (Number(this.prepTimeHrs) || 0) * 3600 +
       (Number(this.prepTimeMins) || 0) * 60 +
       (Number(this.prepTimeSecs) || 0);
 
-    // Calculate total rest time in seconds
     const restTime =
       (Number(this.restTimeHrs) || 0) * 3600 +
       (Number(this.restTimeMins) || 0) * 60 +
@@ -131,8 +122,6 @@ export class TimerComponent {
       clearInterval(this.timerInterval);
       this.isPaused = true;
       this.isRunning = false;
-      // Store remaining time for resume
-      // Find the current phase's remaining time by parsing displayTime
       const [m, s] = this.displayTime.split(':').map(Number);
       this.remainingTime = m * 60 + s;
     }
@@ -140,9 +129,6 @@ export class TimerComponent {
 
   resumeTimer() {
     this.resumeSound();
-
-
-
     if (this.isPaused && this.remainingTime > 0 && this.countdownCallback) {
       this.isPaused = false;
       this.isRunning = true;
@@ -236,7 +222,6 @@ export class TimerComponent {
         clearInterval(this.timerInterval);
         this.countdownCallback = null;
         this.remainingTime = 0;
-        // Play end sound only if rest just finished and all sets are done
         if (this.sets > 0 && this.currentSet >= this.sets && this.currentPhase === 'Rest') {
           this.playEndSound();
         }

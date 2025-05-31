@@ -42,7 +42,7 @@
       </div>
 
       <ion-item>
-        <ion-label position="floating">Number of Sets</ion-label>
+        <ion-label>Sets</ion-label>
         <ion-input type="number" [(ngModel)]="sets" name="sets"></ion-input>
       </ion-item>
       <ng-container *ngIf="(!isRunning && !isPaused) || currentPhase === 'Workout Complete!'">
@@ -56,7 +56,7 @@
         </ion-button>
       </ng-container>
       <ng-container *ngIf="isRunning && currentPhase !== 'Workout Complete!'">
-        <ion-button expand="full" color="warning" type="button" (click)="pauseTimer()">Pause Timer</ion-button>
+        <ion-button expand="" color="warning" type="button" (click)="pauseTimer()">Pause Timer</ion-button>
         <ion-button expand="full" color="danger" type="button" (click)="stopTimer()">Stop Timer</ion-button>
       </ng-container>
       <ng-container *ngIf="isPaused && currentPhase !== 'Workout Complete!'">

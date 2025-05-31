@@ -9,10 +9,13 @@
   background-position: center center;
 }
 
-// Use a soft blue gradient for ion-item backgrounds
 ion-item {
   --ion-item-background: linear-gradient(90deg, #3593ff 0%, #ced9fd 100%);
-
+  width: 80%;
+  min-height: 60px;
+  max-width: 400px;
+  border-radius: 12px;
+  box-shadow: none;
 }
 
 .timer-container {
@@ -36,15 +39,6 @@ form {
   align-items: center;
   gap: 8px;
   background: none;
-}
-
-ion-item {
-  width: 80%;
-  min-height: 60px;
-  max-width: 400px;
-  background: #f5f8ff;
-  border-radius: 12px;
-  box-shadow: none;
 }
 
 ion-label {
@@ -110,7 +104,7 @@ p {
     max-width: 99vw;
     width: 99vw;
     min-height: 40px;
-    height: 90vh;
+    height: 100vh;
     padding: 0 0.5vw;
     gap: 1px;
   }
@@ -141,14 +135,14 @@ p {
     min-height: 22px;
     --border-radius: 4px;
     margin: 1px 0;
-    width: 98%;
-    max-width: 99vw;
+    width: 70%;
+    max-width: 70vw;
   }
   div[ngif], .timer-display {
     margin-top: 0.3em;
   }
   h1 {
-    font-size: 1.3rem;
+    font-size: 1.8rem;
     margin: 0.02em 0;
   }
   h2 {
