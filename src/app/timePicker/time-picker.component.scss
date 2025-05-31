@@ -10,7 +10,7 @@
 .tp-grid {
   background: #f5f8ff;
   border-radius: 14px;
-  padding: 18px 12px 12px 12px;
+  padding: 12px 12px 12px 12px;
   
   margin-bottom: 10px;
   box-sizing: border-box;
@@ -20,7 +20,7 @@
 }
 
 .tp-input {
-  font-size: 2rem;
+  font-size: 1rem;
   font-weight: bold;
   color: #1976d2;
   background: transparent;
@@ -63,12 +63,21 @@
     padding-bottom: 8px;
   }
   .tp-input {
-    font-size: 1.2rem;
-    padding: 4px 0;
+    font-size: 1rem;
+    align-items: center;
+    text-align: center;
+    width: 100%;
   }
   .tp-label {
-    font-size: 0.8rem;
-    margin-top: 0;
+    padding-left: 4px;
+    font-size: 1rem;
+    text-align: center;
+    align-items: center;
+    font-weight: 700;
+
+    width: 100%;
+    margin: 0;
+
   }
 
 }

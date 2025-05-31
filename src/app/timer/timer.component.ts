@@ -53,6 +53,31 @@ export class TimerComponent {
 
   showFireworks: boolean = false;
 
+  stopAllSounds() {
+    this.timerStartAudio.pause();
+    this.timerStartAudio.currentTime = 0;
+    this.timerEndAudio.pause();
+    this.timerEndAudio.currentTime = 0;
+  }
+  puaseSound() {
+    this.timerStartAudio.pause();
+    this.timerEndAudio.pause();
+  }
+  resumeSound() {
+    if (this.timerStartAudio.paused) {
+      this.timerStartAudio.play().catch(error => {
+        console.error('Error playing start sound:', error);
+      }
+      );
+    } else if (this.timerEndAudio.paused) {
+            this.timerEndAudio.play().catch(error => {
+        console.error('Error playing end sound:', error);
+      });
+
+    }
+  }
+
+
   onPrepTimeChange(ev: { hours: number, minutes: number, seconds: number }) {
     this.prepTimeHrs = ev.hours;
     this.prepTimeMins = ev.minutes;
@@ -72,6 +97,7 @@ export class TimerComponent {
   }
 
   startTimer() {
+    this.stopAllSounds();
     // Calculate total work time in seconds from hrs, mins, secs
     this.totalWorkTime =
       (Number(this.workTimeHrs) || 0) * 3600 +
@@ -100,6 +126,7 @@ export class TimerComponent {
   }
 
   pauseTimer() {
+    this.puaseSound();
     if (this.timerInterval) {
       clearInterval(this.timerInterval);
       this.isPaused = true;
@@ -112,36 +139,38 @@ export class TimerComponent {
   }
 
   resumeTimer() {
+    this.resumeSound();
+
+
+
     if (this.isPaused && this.remainingTime > 0 && this.countdownCallback) {
       this.isPaused = false;
       this.isRunning = true;
       const callback = this.countdownCallback;
       const time = this.remainingTime;
-      // Clear previous interval if any
       if (this.timerInterval) {
         clearInterval(this.timerInterval);
       }
-      // Do NOT clear countdownCallback here, let runCountdown manage it
       this.runCountdown(time, callback);
-      // Do not reset remainingTime/countdownCallback here
     }
   }
 
   playStartSound() {
-    this.timerStartAudio.currentTime = 0; 
+    this.timerStartAudio.currentTime = 0;
     this.timerStartAudio.play().catch(error => {
       console.error('Error playing start sound:', error);
     });
   }
 
   playEndSound() {
-    this.timerEndAudio.currentTime = 0; 
+    this.timerEndAudio.currentTime = 0;
     this.timerEndAudio.play().catch(error => {
       console.error('Error playing end sound:', error);
     });
   }
 
   stopTimer() {
+    this.stopAllSounds();
     if (this.timerInterval) {
       clearInterval(this.timerInterval);
     }
